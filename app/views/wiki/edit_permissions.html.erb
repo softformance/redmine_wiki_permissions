@@ -7,7 +7,7 @@
 <%= link_to "Return", :action => 'show', :id => @page.title, :project_id => @page.project  %>
 
 <% if @wiki_page_user_permissions.size != 0 %>
-	<% form_for :wiki_page_user_permission, :url => { :controller => "wiki", :action => "update_wiki_page_user_permissions" } do |f| %>
+	<%=form_for :wiki_page_user_permission, :url => { :controller => "wiki", :action => "update_wiki_page_user_permissions" } do |f| %>
 <table class="list">
 	<thead>
 	  <th><%= l(:label_user) %></th>
@@ -57,7 +57,7 @@
 <% if @page.members_without_permissions.size != 0 %>
 <fieldset id="add_private_permissions" class="box">
   <legend>Add private permissions</legend>
-  <% form_for :wiki_page_user_permission, :url => { :controller => "wiki", :action => "create_wiki_page_user_permissions" } do |f| %>
+  <%=form_for :wiki_page_user_permission, :url => { :controller => "wiki", :action => "create_wiki_page_user_permissions" } do |f| %>
   <label for="user-select">Select user</label>
   <select id="user-select" name="wiki_page_user_permission[member_id]">
     <% @page.members_without_permissions.each do |member| %>

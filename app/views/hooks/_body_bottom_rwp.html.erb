@@ -23,13 +23,13 @@
   </table>
 
   <script type="text/javascript">
-      $$('.other-formats')[0].insert({'before':$$('.show-permissions')[0]})
-      $$('.icon-history')[0].insert({'before':$$('.icon-permissions')[0]})
+      $('.other-formats').append($('.show-permissions'))
+      $('.icon-history').append($('.icon-permissions'))
       <% if !User.current.can_edit? @page %>
-	$$('.icon-edit')[0].style.display="none"
-	$$('.icon-lock')[0].style.display="none"
-	$$('.icon-rename')[0].style.display="none"
-	$$('.icon-del')[0].style.display="none"
+	$('.icon-edit')[0].style.display="none"
+	$('.icon-lock')[0].style.display="none"
+	$('.icon-move')[0].style.display="none"
+	$('.icon-del')[0].style.display="none"
       <% end %>
   </script>
 

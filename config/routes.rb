@@ -1,8 +1,8 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :projects do |project|
-    project.wiki_permissions 'wiki/:id/permissions', :controller => 'wiki', :action => 'permissions'
-    project.wiki_permissions 'wiki/:id/permissions/create', :controller => 'wiki', :action => 'create_wiki_page_user_permissions'
-    project.wiki_permissions 'wiki/:id/permissions/update', :controller => 'wiki', :action => 'update_wiki_page_user_permissions'
-    project.wiki_permissions 'wiki/:id/permissions/delete', :controller => 'wiki', :action => 'destroy_wiki_page_user_permissions'
-  end
+RedmineApp::Application.routes.draw do
+  resources :projects do |project|
+    match 'wiki/:id/permissions', :to => 'wiki#permissions'
+    match 'wiki/:id/permissions/create',  :to => 'wiki#create_wiki_page_user_permissions', via: [:get, :post]
+    match 'wiki/:id/permissions/update',  :to => 'wiki#update_wiki_page_user_permissions', via: [:get, :post]
+    match 'wiki/:id/permissions/delete',  :to => 'wiki#destroy_wiki_page_user_permissions', via: [:get, :post]
+  end  
 end

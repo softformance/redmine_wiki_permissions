@@ -3,8 +3,7 @@ require 'wiki_permissions/hook'
 require 'diff'
 require 'rubygems'
 
-require 'dispatcher'
-Dispatcher.to_prepare :redmine_wiki_permissions do
+ActionDispatch::Callbacks.to_prepare do 
   unless WikiPage.included_modules.include? WikiPermissions::WikiPageRwp
     WikiPage.send(:include, WikiPermissions::WikiPageRwp)
   end
@@ -35,9 +34,9 @@ Redmine::Plugin.register :redmine_wiki_permissions do
   author 'Equelli'
   description 'This redmine plugin adding permissions for every wiki page'
   version '0.0.1'
-  requires_redmine :version => ['1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.4.5', '1.4.6', '1.4.7', '1.4.8', '1.4.9']
+  requires_redmine :version_or_higher => ['2.1.1']
   
-  project_module :wiki do
+  project_module :wiki_permissions do
     permission :edit_wiki_permissions, { :wiki => [:permissions, :create_wiki_page_user_permissions, :update_wiki_page_user_permissions, :destroy_wiki_page_user_permissions] }
   end
 end
